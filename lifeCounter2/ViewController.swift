@@ -186,9 +186,24 @@ class PersonPanelView: UIView {
     }
 }
 
-class historyView : UIViewController {
+class historyView : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return hist.count
+    }
+
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell")!
+        cell.textLabel?.text = hist[indexPath.row]
+        return cell
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,23 +222,8 @@ class historyView : UIViewController {
     }
     
     private func addHistory() {
-        NSLog("adding valuees!!!!")
         tableView.insertRows(at: [IndexPath.init(row: hist.count-1, section: 0)], with: .automatic)
     }
 }
 
-extension historyView: UITableViewDelegate,UITableViewDataSource {
 
-        func numberOfSections(in tableView: UITableView) -> Int {
-            return 1
-        }
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return hist.count
-        }
-
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell")!
-            cell.textLabel?.text = hist[indexPath.row]
-            return cell
-        }
-    }
