@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  NibLoadingDemo
+//  LifeCounter2
 //
-//  Created by Ted Neward on 4/27/21.
+//  Created by stlp on 5/7/21.
 //
 
 import UIKit
