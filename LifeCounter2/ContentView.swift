@@ -21,7 +21,7 @@ var history = [String]()
 
 struct ContentView: View {
     @State var count: Double = 0.0
-    @State var numPlayers = 2
+    @State var numPlayers = 4
     
     var body: some View {
         NavigationView {
