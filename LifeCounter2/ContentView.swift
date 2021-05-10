@@ -9,28 +9,46 @@ import SwiftUI
 
 var history = [String]()
 
+//ForEach(self.toDoStorage.toDos) { todo in
+//
+//    if todo.important {
+//        Text(todo.title).bold()
+//    } else {
+//        Text(todo.title)
+//    }
+//}
+
+
 struct ContentView: View {
     @State var count: Double = 0.0
     @State var numPlayers = 2
     
     var body: some View {
+        NavigationView {
+//            navigationBarItems(leading: NavigationLink(destination: HistoryView(historyStrings: history),
+//                label: {Text("History")}))
+            VStack() {
+            NavigationLink(destination: HistoryView(historyStrings: ["test", "test2"]),
+                           label: {Text("History")}).padding(0)
         
-        ScrollView {
-            
-            VStack {
+                ScrollView() {
 
-                Button(action: {
-                    if(self.numPlayers < 8) {
-                        self.numPlayers += 1
+                    VStack {
+
+                        Button(action: {
+                            if(self.numPlayers < 8) {
+                                self.numPlayers += 1
+                            }
+                        }, label: {
+                            Text("Add Player")
+                        }).padding(50)
+             
+                        Text("Select Life Amount to Subtract: \(count, specifier: "%.2f")")
+                        Slider(value: $count, in: 0...20).padding()
+                        ForEach(0 ..< self.numPlayers, id: \.self) { i in
+                            PlayerView(amount: self.count, playerNum: i + 1)
+                        }
                     }
-                }, label: {
-                    Text("Add Player")
-                }).padding(50)
-     
-                Text("Select Life Amount to Subtract: \(count, specifier: "%.2f")")
-                Slider(value: $count, in: 0...20).padding()
-                ForEach(0 ..< self.numPlayers, id: \.self) { i in
-                    PlayerView(amount: self.count, playerNum: i + 1)
                 }
             }
         }
@@ -64,24 +82,31 @@ struct PlayerView: View {
                 Button(action: {
                     self.numLives -= amount
                     history.append("Player " + String(self.playerNum) + " gained " + String(self.amount) + " lives")
+                    print(history[history.count - 1])
+
                 }, label: {
-                    Text("-" + String(3))
+                    Text("-")
                 }).padding()
                 Button(action: {
                     self.numLives -= 1
                     history.append("Player " + String(self.playerNum) + " lost 1 life")
+                    print(history[history.count - 1])
+
                 }, label: {
                     Text("-1")
                 }).padding()
                 Button(action: {
                     self.numLives += 1
                     history.append("Player " + String(self.playerNum) + " gained 1 life")
+                    print(history[history.count - 1])
+
                 }, label: {
                     Text("+1")
                 }).padding()
                 Button(action: {
                     self.numLives += amount
                     history.append("Player " + String(self.playerNum) + " gained " + String(self.amount) + " lives")
+                    print(history[history.count - 1])
                 }, label: {
                     Text("+")
                 }).padding()
@@ -95,5 +120,25 @@ struct PlayerView: View {
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
         PlayerView(amount: 1.0, playerNum: 1)
+    }
+}
+
+struct HistoryView: View {
+    var historyStrings = [String]()
+    init(historyStrings: [String]) {
+        self.historyStrings = historyStrings
+    }
+    var body: some View {
+        List {
+            ForEach(0 ..< self.historyStrings.count, id: \.self) { i in
+                Text(historyStrings[i])
+            }
+        }
+    }
+}
+
+struct HistoryView_Previews: PreviewProvider {
+    static var previews: some View {
+        HistoryView(historyStrings: ["test"])
     }
 }
