@@ -16,7 +16,6 @@
 		DB1249A826460E0C0036954F /* LifeCounter2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1249A726460E0C0036954F /* LifeCounter2Tests.swift */; };
 		DB1249B326460E0C0036954F /* LifeCounter2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1249B226460E0C0036954F /* LifeCounter2UITests.swift */; };
 		DB1249C426460F750036954F /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1249C326460F750036954F /* PlayerView.swift */; };
-		DB1249C92649DBA30036954F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1249C82649DBA30036954F /* HistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +51,6 @@
 		DB1249B226460E0C0036954F /* LifeCounter2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCounter2UITests.swift; sourceTree = "<group>"; };
 		DB1249B426460E0D0036954F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB1249C326460F750036954F /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		DB1249C82649DBA30036954F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +81,6 @@
 		DB12498426460E0B0036954F = {
 			isa = PBXGroup;
 			children = (
-				DB1249C82649DBA30036954F /* HistoryView.swift */,
 				DB12498F26460E0B0036954F /* LifeCounter2 */,
 				DB1249A626460E0C0036954F /* LifeCounter2Tests */,
 				DB1249B126460E0C0036954F /* LifeCounter2UITests */,
@@ -274,7 +271,6 @@
 			files = (
 				DB12499126460E0B0036954F /* AppDelegate.swift in Sources */,
 				DB12499326460E0B0036954F /* SceneDelegate.swift in Sources */,
-				DB1249C92649DBA30036954F /* HistoryView.swift in Sources */,
 				DB12499526460E0B0036954F /* ContentView.swift in Sources */,
 				DB1249C426460F750036954F /* PlayerView.swift in Sources */,
 			);

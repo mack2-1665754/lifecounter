@@ -28,7 +28,7 @@ struct ContentView: View {
 //            navigationBarItems(leading: NavigationLink(destination: HistoryView(historyStrings: history),
 //                label: {Text("History")}))
             VStack() {
-            NavigationLink(destination: HistoryView(historyStrings: ["test", "test2"]),
+            NavigationLink(destination: HistoryView(),
                            label: {Text("History")}).padding(0)
         
                 ScrollView() {
@@ -71,6 +71,11 @@ struct PlayerView: View {
         self.playerNum = playerNum
     }
     
+    func didLose() {
+        if (self.numLives <= 0) {
+            history.append("Player " + String(self.playerNum) + " loses")
+        }
+    }
     var body: some View {
         VStack {
             HStack {
@@ -82,6 +87,7 @@ struct PlayerView: View {
                 Button(action: {
                     self.numLives -= amount
                     history.append("Player " + String(self.playerNum) + " gained " + String(self.amount) + " lives")
+                    didLose()
                     print(history[history.count - 1])
 
                 }, label: {
@@ -90,6 +96,7 @@ struct PlayerView: View {
                 Button(action: {
                     self.numLives -= 1
                     history.append("Player " + String(self.playerNum) + " lost 1 life")
+                    didLose()
                     print(history[history.count - 1])
 
                 }, label: {
@@ -98,6 +105,7 @@ struct PlayerView: View {
                 Button(action: {
                     self.numLives += 1
                     history.append("Player " + String(self.playerNum) + " gained 1 life")
+                    didLose()
                     print(history[history.count - 1])
 
                 }, label: {
@@ -106,6 +114,7 @@ struct PlayerView: View {
                 Button(action: {
                     self.numLives += amount
                     history.append("Player " + String(self.playerNum) + " gained " + String(self.amount) + " lives")
+                    didLose()
                     print(history[history.count - 1])
                 }, label: {
                     Text("+")
@@ -124,14 +133,10 @@ struct PlayerView_Previews: PreviewProvider {
 }
 
 struct HistoryView: View {
-    var historyStrings = [String]()
-    init(historyStrings: [String]) {
-        self.historyStrings = historyStrings
-    }
     var body: some View {
         List {
-            ForEach(0 ..< self.historyStrings.count, id: \.self) { i in
-                Text(historyStrings[i])
+            ForEach(0 ..< history.count, id: \.self) { i in
+                Text(history[i])
             }
         }
     }
@@ -139,6 +144,6 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(historyStrings: ["test"])
+        HistoryView()
     }
 }
