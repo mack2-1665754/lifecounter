@@ -8,6 +8,7 @@
 import SwiftUI
 
 var history = [String]()
+var gameStarted = false
 
 //ForEach(self.toDoStorage.toDos) { todo in
 //
@@ -36,7 +37,7 @@ struct ContentView: View {
                     VStack {
 
                         Button(action: {
-                            if(self.numPlayers < 8) {
+                            if(self.numPlayers < 8 && !gameStarted) {
                                 self.numPlayers += 1
                             }
                         }, label: {
@@ -71,6 +72,11 @@ struct PlayerView: View {
         self.playerNum = playerNum
     }
     
+    func startGame() {
+        if (!gameStarted) {
+            gameStarted = true
+        }
+    }
     func didLose() {
         if (self.numLives <= 0) {
             history.append("Player " + String(self.playerNum) + " loses")
@@ -88,6 +94,7 @@ struct PlayerView: View {
                     self.numLives -= amount
                     history.append("Player " + String(self.playerNum) + " gained " + String(self.amount) + " lives")
                     didLose()
+                    startGame()
                     print(history[history.count - 1])
 
                 }, label: {
@@ -97,6 +104,7 @@ struct PlayerView: View {
                     self.numLives -= 1
                     history.append("Player " + String(self.playerNum) + " lost 1 life")
                     didLose()
+                    startGame()
                     print(history[history.count - 1])
 
                 }, label: {
@@ -106,6 +114,7 @@ struct PlayerView: View {
                     self.numLives += 1
                     history.append("Player " + String(self.playerNum) + " gained 1 life")
                     didLose()
+                    startGame()
                     print(history[history.count - 1])
 
                 }, label: {
@@ -115,6 +124,7 @@ struct PlayerView: View {
                     self.numLives += amount
                     history.append("Player " + String(self.playerNum) + " gained " + String(self.amount) + " lives")
                     didLose()
+                    startGame()
                     print(history[history.count - 1])
                 }, label: {
                     Text("+")
